@@ -65,7 +65,7 @@
             <div class="table-title">
                 <button id="calendar-back" class="btn btn-primary"><span class="material-icons">arrow_back</span></button>
                 <h3 id="calendar-title" class="text-center"></h3>
-                <button id="calendar-foward" class="btn btn-primary"><span class="material-icons">arrow_forward</span></button>
+                <button id="calendar-forward" class="btn btn-primary"><span class="material-icons">arrow_forward</span></button>
             </div>
             <table id="calendar" class="table">
                 <thead>
@@ -254,7 +254,7 @@
                 refreshCalendar(showDate, currentDate);
             });
 
-            $('#calendar-foward').click(function() {
+            $('#calendar-forward').click(function() {
                 let showmonth = showDate.getMonth();
                 let showyear = showDate.getFullYear();
                 if(showmonth == 11) {
