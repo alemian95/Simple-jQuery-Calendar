@@ -84,6 +84,16 @@
                 <tr id="calendar-row5"></tr>
                 <tr id="calendar-row6"></tr>
             </table>
+            <button id="calendar-today" class="btn btn-primary">Back to today</button>
+            <div class="input-group mb-3">
+                <select id="calendar-goto-month">
+                    <option value="-1">- Select month -</option>
+                </select>
+                <input id="calendar-goto-year" type="number" class="form-control" placeholder="Year" min="2020" max="2025">
+                <div class="input-group-append">
+                    <button id="calendar-goto-submit" class="btn btn-primary" type="button">Go</button>
+                </div>
+            </div>
         </div>
   
         <!-- Modal -->
@@ -222,6 +232,12 @@
 
             $(document).ready(function() {
                 refreshCalendar(showDate, currentDate);
+                for(let i = 0; i < months.length; i++) {
+                    var o = $('<option></option>');
+                    o.text(months[i]);
+                    o.attr('value', i);
+                    $('#calendar-goto-month').append(o);
+                }
             });
 
             $('#calendar-back').click(function() {
@@ -251,6 +267,19 @@
                 refreshCalendar(showDate, currentDate);
             });
 
+            $('#calendar-today').click(function() {
+                currentDate = new Date();
+                showDate = new Date();
+                refreshCalendar(showDate, currentDate);
+            });
+
+            $('#calendar-goto-submit').click(function() {
+                let selMonth = $('#calendar-goto-month').val();
+                let selYear = $('#calendar-goto-year').val();
+                let ds = `${months[selMonth]} 1, ${selYear} 01:00:00`;
+                showDate = new Date(ds);
+                refreshCalendar(showDate, currentDate);
+            });
 
             $('#closeMyModal').click(function(){
                 $('#myModal').modal('hide');
